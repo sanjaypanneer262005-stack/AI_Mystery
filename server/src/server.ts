@@ -1,2 +1,2 @@
 import mongoose from 'mongoose'; import { app } from './app.js'; import { env } from './config/env.js'; import { CaseModel } from './models/Case.js';
-await mongoose.connect(env.MONGODB_URI); const stale=new Date(Date.now()-10*60_000);await CaseModel.updateMany({status:'generating',updatedAt:{$lt:stale}},{status:'failed',progress:{stage:'done',percent:100}});app.listen(env.PORT,()=>console.log(`API listening on ${env.PORT}`));
+await mongoose.connect(env.MONGODB_URI); const stale=new Date(Date.now()-10*60_000);await CaseModel.updateMany({status:'generating',updatedAt:{$lt:stale}},{status:'failed',progress:{stage:'done',percent:100}});app.listen(env.PORT,'0.0.0.0',()=>console.log(`API listening on ${env.PORT}`));

@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: ai-mystery-room-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: COOKIE_SAME_SITE
+        value: none
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MOCK_AI
+        value: "false"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_TEXT_MODEL
+        sync: false
+      - key: GEMINI_FAST_MODEL
+        sync: false
+      - key: GEMINI_IMAGE_MODEL
+        sync: false
+      - key: DAILY_CASE_LIMIT
+        value: "5"
+      - key: MAX_ACCUSATIONS
+        value: "2"
+      - key: MAX_REGENERATIONS
+        value: "2"
